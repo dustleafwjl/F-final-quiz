@@ -3,7 +3,7 @@ import { Tag, Input, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 import './index.module.scss'
-import { getAllStudent } from "../../utils/Api.js"
+import { getAllStudent, createStudentAndGet } from "../../utils/Api.js"
 
 class StudentList extends Component {
   state = {
@@ -39,6 +39,15 @@ class StudentList extends Component {
   handleInputConfirm = () => {
     const { inputValue } = this.state;
     console.log(inputValue)
+    createStudentAndGet({
+      name: inputValue,
+      id: "",
+      group: ""
+    }).then(res => {
+      this.setState({
+        students: res.data
+      })
+    })
     this.setState({
       inputVisible: false,
       inputValue: '',

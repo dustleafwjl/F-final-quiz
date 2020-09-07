@@ -7,3 +7,11 @@ const http = axios.create({
 export const getAllStudent = () => {
   return http.get("/students");
 }
+
+export const createStudentAndGet = (student) => {
+  return http.post("/students", student);
+}
+
+export const divideStudent = () => {
+  return http.patch("/students/divided");
+}
