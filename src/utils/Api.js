@@ -20,6 +20,6 @@ export const getAllGroups = () => {
   return http.get("/groups");
 }
 
-export const reNameGroup = (name) => {
-  return http.patch(`/groups/${name}`);
+export const reNameGroup = (name, rename) => {
+  return http.patch(`/groups/${name}/rename?text=${rename}`);
 }

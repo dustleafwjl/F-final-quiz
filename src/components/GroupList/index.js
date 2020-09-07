@@ -29,8 +29,8 @@ class GroupList extends Component {
     })
   }
 
-  handleGroupReNameClick = (name) => {
-    reNameGroup(name).then(res => {
+  handleGroupReNameClick = (name, rename) => {
+    reNameGroup(name, rename).then(res => {
       console.log(res);
       this.setState({
         groupList: res.data

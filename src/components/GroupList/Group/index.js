@@ -22,8 +22,9 @@ class Group extends Component {
   };
 
   handleInputConfirm = () => {
+    const { name } = this.props.group;
     const { inputValue } = this.state;
-    this.props.handleGroupReNameClick(inputValue);
+    this.props.handleGroupReNameClick(name, inputValue);
     this.setState({
       inputVisable: false,
       inputValue: '',
