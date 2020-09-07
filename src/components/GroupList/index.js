@@ -15,7 +15,6 @@ class GroupList extends Component {
 
   componentDidMount() {
     getAllGroups().then(res => {
-      console.log(res)
       this.setState({
         groupList: res.data
       })
@@ -31,7 +30,6 @@ class GroupList extends Component {
 
   handleGroupReNameClick = (name, rename) => {
     reNameGroup(name, rename).then(res => {
-      console.log(res);
       this.setState({
         groupList: res.data
       })
@@ -48,7 +46,7 @@ class GroupList extends Component {
         </header>
         <main>
           {
-            this.state.groupList.map(group => <Group group={group} handleGroupReNameClick={this.handleGroupReNameClick}></Group>)
+            this.state.groupList.map(group => <Group key={group.name} group={group} handleGroupReNameClick={this.handleGroupReNameClick}></Group>)
           }
         </main>
       </div>

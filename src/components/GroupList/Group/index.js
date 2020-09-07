@@ -33,7 +33,6 @@ class Group extends Component {
     });
   };
   render() {
-    console.log(this.props)
     const { inputVisable, inputValue } = this.state;
     const { name, students } = this.props.group;
     return (

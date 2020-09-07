@@ -14,7 +14,6 @@ class StudentList extends Component {
 
   componentDidMount() {
     getAllStudent().then(res => {
-      console.log(res)
       this.setState({
         students: res.data
       })
@@ -61,7 +60,6 @@ class StudentList extends Component {
         <h1>学生列表</h1>
         {
           this.state.students.map((tag, index) => {
-            console.log(tag)
             return (
               <Tag
                 className='student_tag'
