@@ -1,6 +1,16 @@
-.groun {
+@import '../../../style/variables';
+
+.group {
   text-align: center;
+  .title_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: $gray;
+    margin: 6px 0px;
+  }
   h3 {
-    background-color: red;
+    margin: 0;
   }
 }

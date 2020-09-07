@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import { Tag, Input, Tooltip } from 'antd';
+import './index.scss';
+
 class Group extends Component {
   state = {
     inputVisable: false,
@@ -36,7 +38,7 @@ class Group extends Component {
     const { name, students } = this.props.group;
     return (
       <div className='group'>
-        <header>
+        <header className="title_wrap">
           {
             inputVisable && <Input
               ref={this.saveInputRef}

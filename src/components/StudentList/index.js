@@ -35,16 +35,17 @@ class StudentList extends Component {
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
-    console.log(inputValue)
-    createStudentAndGet({
-      name: inputValue,
-      id: "",
-      group: ""
-    }).then(res => {
-      this.setState({
-        students: res.data
+    if(inputValue) {
+      createStudentAndGet({
+        name: inputValue,
+        id: "",
+        group: ""
+      }).then(res => {
+        this.setState({
+          students: res.data
+        })
       })
-    })
+    }
     this.setState({
       inputVisible: false,
       inputValue: '',
@@ -66,7 +67,7 @@ class StudentList extends Component {
                 className='student_tag'
                 key={tag.name}
               >
-                {`${index+1} ${tag.name}`}
+                {`${tag.id} ${tag.name}`}
               </Tag>
             )
           })
