@@ -3,7 +3,7 @@ import { Button } from 'antd'
 
 
 import Group from './Group'
-import { divideStudent } from '../../utils/Api.js'
+import { divideStudent, getAllGroups, reNameGroup } from '../../utils/Api.js'
 import './index.module.scss'
 
 class GroupList extends Component {
@@ -12,6 +12,15 @@ class GroupList extends Component {
     groupList: []
   }
 
+
+  componentDidMount() {
+    getAllGroups().then(res => {
+      console.log(res)
+      this.setState({
+        groupList: res.data
+      })
+    })
+  }
   handledividedClick = () => {
     divideStudent().then(res => {
       this.setState({
@@ -20,18 +29,12 @@ class GroupList extends Component {
     })
   }
 
-  formatGroupDate = (students) => {
-    const groupTemp = []
-    const groupMapper = {}
-    let groupIndex = 0;
-    students.forEach(student => {
-      if(!groupMapper[student.group]) {
-        groupMapper[student.group] = ++ groupIndex;
-      }
-        groupTemp[groupMapper - 1].push(student);
-    });
-    this.setState({
-      groupList: groupTemp
+  handleGroupReNameClick = (name) => {
+    reNameGroup(name).then(res => {
+      console.log(res);
+      this.setState({
+        groupList: res.data
+      })
     })
   }
   render() {
@@ -45,7 +48,7 @@ class GroupList extends Component {
         </header>
         <main>
           {
-            this.state.groupList.map(group => <Group group={group}></Group>)
+            this.state.groupList.map(group => <Group group={group} handleGroupReNameClick={this.handleGroupReNameClick}></Group>)
           }
         </main>
       </div>

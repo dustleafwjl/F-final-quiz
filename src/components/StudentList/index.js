@@ -9,7 +9,7 @@ class StudentList extends Component {
   state = {
     students: [],
     inputVisible: false,
-    editInputValue: ''
+    inputValue: ''
   }
 
   componentDidMount() {
@@ -25,9 +25,6 @@ class StudentList extends Component {
     this.input = input;
   };
 
-  saveEditInputRef = input => {
-    this.editInput = input;
-  };
   showInput = () => {
     this.setState({ inputVisible: true }, () => this.input.focus());
   };
@@ -54,17 +51,8 @@ class StudentList extends Component {
     });
   };
 
-  handleEditInputChange = e => {
-    this.setState({ editInputValue: e.target.value });
-  };
+  
 
-  handleEditInputConfirm = () => {
-    this.setState(({ tags, editInputIndex, editInputValue }) => {
-      return {
-        editInputValue: '',
-      };
-    });
-  };
   render() {
     const { inputVisible, editInputValue, inputValue } = this.state;
     return (
@@ -75,7 +63,7 @@ class StudentList extends Component {
             console.log(tag)
             return (
               <Tag
-                className='studentt_tag'
+                className='student_tag'
                 key={tag.name}
               >
                 {`${index+1} ${tag.name}`}
@@ -96,7 +84,7 @@ class StudentList extends Component {
           />
         )}
         {!inputVisible && (
-          <Tag className="site-tag-plus studentt_tag" onClick={this.showInput}>
+          <Tag className="site-tag-plus student_tag" onClick={this.showInput}>
             <PlusOutlined /> 添加学员
           </Tag>
         )}
