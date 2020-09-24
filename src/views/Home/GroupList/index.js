@@ -28,8 +28,8 @@ class GroupList extends Component {
     });
   };
 
-  handleGroupReNameClick = (name, rename) => {
-    changeNameGroup(name, rename).then((res) => {
+  handleGroupReNameClick = (id, rename) => {
+    changeNameGroup(id, rename).then((res) => {
       this.setState({
         groupList: res.data,
       });

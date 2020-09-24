@@ -31,9 +31,9 @@ class Group extends Component {
   };
 
   handleInputConfirm = () => {
-    const { name } = this.props.group;
+    const { id } = this.props.group;
     const { inputValue } = this.state;
-    this.props.handleGroupReNameClick(name, inputValue);
+    this.props.handleGroupReNameClick(id, inputValue);
     this.setState({
       inputVisable: false,
       inputValue: '',
@@ -58,13 +58,7 @@ class Group extends Component {
               onPressEnter={this.handleInputConfirm}
             />
           ) : (
-            <div
-              // eslint-disable-next-line jsx-a11y/aria-role
-              role="input"
-              onMouseDown={this.showInput}
-              onKeyDown={this.showInput}
-              onClick={this.showInput}
-            >
+            <div onClick={this.showInput}>
               <h3>{name}</h3>
             </div>
           )}

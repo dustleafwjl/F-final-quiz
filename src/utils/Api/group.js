@@ -9,5 +9,5 @@ export const getAllGroups = () => {
 };
 
 export const changeNameGroup = (id, rename) => {
-  return http.patch(`/groups/${id}/rename?text=${rename}`);
+  return http.patch(`/groups/${id}?name=${rename}`);
 };
