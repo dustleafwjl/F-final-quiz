@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
-import { createTrainerAndGet } from '../../../utils/Api';
+import { createTrainerAndGet, getAllTrainerWithNotGrouped } from '../../../utils/Api';
 import InfoPopover from '../../../components/InfoPopover';
 
 class TrainerList extends Component {
@@ -15,7 +15,13 @@ class TrainerList extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    getAllTrainerWithNotGrouped().then((res) => {
+      this.setState({
+        trainers: res.data,
+      });
+    });
+  }
 
   saveInputRef = (input) => {
     this.input = input;
@@ -38,7 +44,7 @@ class TrainerList extends Component {
         group: '',
       }).then((res) => {
         this.setState((preState) => ({
-          trainers: [...preState, res.data],
+          trainers: [...preState.trainers, res.data],
         }));
       });
     }
@@ -54,7 +60,7 @@ class TrainerList extends Component {
       <div className="trainer_list">
         <h1>讲师列表</h1>
         {this.state.trainers.map((tag, index) => {
-          return <InfoPopover key={tag.name} info={{ ...tag, index }} />;
+          return <InfoPopover key={`trainer:${tag.name}`} info={{ ...tag, index }} />;
         })}
         {inputVisible ? (
           <Input

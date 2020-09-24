@@ -3,14 +3,14 @@ import { Tag, Popover } from 'antd';
 
 const InfoPopover = (props) => {
   const { info } = props;
+
   const infoPanel = (
     <div>
-      <Tag>{`name: ${info.name}`}</Tag>
-      <Tag>{`email: ${info.email}`}</Tag>
-      <Tag>{`office: ${info.office}`}</Tag>
-      <Tag>{`github: ${info.github}`}</Tag>
-      <Tag>{`zoomId: ${info.zoomId}`}</Tag>
-      {info.group && <Tag>{`group: ${info.group}`}</Tag>}
+      {Object.entries(info)
+        .filter((ele) => ele[0] !== 'index')
+        .map((item, index) => {
+          return <Tag key={`${item[1]}${index}`}>{`${item[0]}: ${item[1]}`}</Tag>;
+        })}
     </div>
   );
   return (

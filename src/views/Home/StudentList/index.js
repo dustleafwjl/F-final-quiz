@@ -31,7 +31,7 @@ class StudentList extends Component {
       <div className="student_list">
         <h1>学生列表</h1>
         {this.state.students.map((tag, index) => {
-          return <InfoPopover key={tag.name} info={{ ...tag, index }} />;
+          return <InfoPopover key={`trainee:${tag.name}`} info={{ ...tag, index }} />;
         })}
         <Tag className="site-tag-plus student_tag" onClick={this.goToAddTrainee}>
           <PlusOutlined /> 添加学员
