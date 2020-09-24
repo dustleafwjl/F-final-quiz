@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-
-import './index.module.scss';
+import './index.scss';
 import { getAllStudent, createStudentAndGet } from '../../../utils/Api';
 
 class StudentList extends Component {
