@@ -3,7 +3,7 @@ import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 import './index.module.scss';
-import { getAllStudent, createStudentAndGet } from '../../utils/Api';
+import { getAllStudent, createStudentAndGet } from '../../../utils/Api';
 
 class StudentList extends Component {
   constructor(props) {

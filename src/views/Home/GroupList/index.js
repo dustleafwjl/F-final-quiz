@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import Group from './Group';
-import { divideStudent, getAllGroups, reNameGroup } from '../../utils/Api';
+import { divideStudent, getAllGroups, reNameGroup } from '../../../utils/Api';
 import './index.module.scss';
 
 class GroupList extends Component {
@@ -51,7 +51,7 @@ class GroupList extends Component {
               key={group.name}
               group={group}
               handleGroupReNameClick={this.handleGroupReNameClick}
-             />
+            />
           ))}
         </main>
       </div>

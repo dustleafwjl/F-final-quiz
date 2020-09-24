@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
-import StudentList from '../views/StudentList';
-import GroupList from '../views/GroupList';
+import Home from '../views/Home';
+import AddStudent from '../views/AddStudent';
 
 import 'antd/dist/antd.css';
 
@@ -10,8 +11,16 @@ class App extends Component {
   render() {
     return (
       <div data-testid="app" className="App">
-        <GroupList />
-        <StudentList />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/addstudent">
+              <AddStudent />
+            </Route>
+          </Switch>
+        </Router>
       </div>
     );
   }

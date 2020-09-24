@@ -53,8 +53,8 @@ class Group extends Component {
             />
           ) : (
             <div
-              role="textbox"
-              tabIndex="0"
+              // eslint-disable-next-line jsx-a11y/aria-role
+              role="input"
               onMouseDown={this.showInput}
               onKeyDown={this.showInput}
               onClick={this.showInput}
