@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
-import { Tag, Input, Modal, message } from 'antd';
+import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
 import {
@@ -18,9 +18,6 @@ class TrainerList extends Component {
       trainers: [],
       inputVisible: false,
       inputValue: '',
-      modalVisible: false,
-      confirmLoading: false,
-      deleteTrainerId: 0,
     };
   }
 
@@ -71,36 +68,6 @@ class TrainerList extends Component {
     });
   };
 
-  showModal = (id) => {
-    this.setState({
-      modalVisible: true,
-      deleteTrainerId: id,
-    });
-  };
-
-  handleConfirm = () => {
-    this.setState({
-      confirmLoading: true,
-    });
-    // send request
-    deleteTrainerById(this.state.deleteTrainerId).then((res) => {
-      if (res.status === 204) {
-        message.success('删除成功！');
-        this.setState({
-          confirmLoading: false,
-          modalVisible: false,
-        });
-        this.reFresh();
-      }
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      modalVisible: false,
-    });
-  };
-
   render() {
     const { inputVisible, inputValue } = this.state;
     return (
@@ -108,20 +75,14 @@ class TrainerList extends Component {
         <h1>讲师列表</h1>
         {this.state.trainers.map((tag, index) => {
           return (
-            <span onClick={() => this.showModal(tag.id)} key={`trainer:${tag.name}`}>
-              <InfoPopover info={{ ...tag, index }} />
-            </span>
+            <InfoPopover
+              key={`trainer:${tag.name}`}
+              info={{ ...tag, index }}
+              handleDelete={deleteTrainerById}
+              reFresh={this.reFresh}
+            />
           );
         })}
-        <Modal
-          title="删除讲师"
-          visible={this.state.modalVisible}
-          onOk={this.handleConfirm}
-          confirmLoading={this.state.confirmLoading}
-          onCancel={this.handleCancel}
-        >
-          <p>删除讲师后不可复原</p>
-        </Modal>
         {inputVisible ? (
           <Input
             ref={this.saveInputRef}

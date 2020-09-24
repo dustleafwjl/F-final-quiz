@@ -1,13 +1,13 @@
 import http from '../Http';
 
-export const divideStudent = () => {
-  return http.patch('/students/divided');
+export const createdGroups = () => {
+  return http.post('/groups');
 };
 
 export const getAllGroups = () => {
   return http.get('/groups');
 };
 
-export const reNameGroup = (name, rename) => {
-  return http.patch(`/groups/${name}/rename?text=${rename}`);
+export const changeNameGroup = (id, rename) => {
+  return http.patch(`/groups/${id}/rename?text=${rename}`);
 };

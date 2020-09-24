@@ -3,6 +3,7 @@
 .group {
   text-align: center;
   .title_wrap {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,5 +13,10 @@
   }
   h3 {
     margin: 0;
+  }
+  .trainee-wrap {
+    position: absolute;
+    top: 0px;
+    right: 10px;
   }
 }

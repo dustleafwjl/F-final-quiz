@@ -1,7 +1,13 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
-
-import { Tag, Input } from 'antd';
+import { Input } from 'antd';
 import './index.scss';
+
+import { deleteTraineeById } from '../../../../utils/Api/trainee';
+import { deleteTrainerById } from '../../../../utils/Api/trainer';
+
+import InfoPopover from '../../../../components/InfoPopover';
 
 class Group extends Component {
   constructor(props) {
@@ -36,7 +42,7 @@ class Group extends Component {
 
   render() {
     const { inputVisable, inputValue } = this.state;
-    const { name, students } = this.props.group;
+    const { name, trainees, trainers } = this.props.group;
     return (
       <div className="group">
         <header className="title_wrap">
@@ -62,12 +68,25 @@ class Group extends Component {
               <h3>{name}</h3>
             </div>
           )}
+          <div className="trainee-wrap">
+            {trainers.map((trainer, index) => (
+              <InfoPopover
+                key={`trainer:${trainer.name}`}
+                info={{ ...trainer, index }}
+                handleDelete={deleteTrainerById}
+                reFresh={this.reFresh}
+              />
+            ))}
+          </div>
         </header>
         <main>
-          {students.map((student) => (
-            <Tag className="student_tag" key={student.name + name}>
-              {`${student.id} ${student.name}`}
-            </Tag>
+          {trainees.map((trainee, index) => (
+            <InfoPopover
+              key={`trainee:${trainee.name}`}
+              info={{ ...trainee, index }}
+              handleDelete={deleteTraineeById}
+              reFresh={this.reFresh}
+            />
           ))}
         </main>
       </div>

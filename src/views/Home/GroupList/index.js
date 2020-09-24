@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import Group from './Group';
-import { divideStudent, getAllGroups, reNameGroup } from '../../../utils/Api/group';
+import { createdGroups, getAllGroups, changeNameGroup } from '../../../utils/Api/group';
 import './index.module.scss';
 
 class GroupList extends Component {
@@ -21,7 +21,7 @@ class GroupList extends Component {
   }
 
   handledividedClick = () => {
-    divideStudent().then((res) => {
+    createdGroups().then((res) => {
       this.setState({
         groupList: res.data,
       });
@@ -29,7 +29,7 @@ class GroupList extends Component {
   };
 
   handleGroupReNameClick = (name, rename) => {
-    reNameGroup(name, rename).then((res) => {
+    changeNameGroup(name, rename).then((res) => {
       this.setState({
         groupList: res.data,
       });
@@ -46,13 +46,14 @@ class GroupList extends Component {
           </Button>
         </header>
         <main>
-          {this.state.groupList.map((group) => (
-            <Group
-              key={group.name}
-              group={group}
-              handleGroupReNameClick={this.handleGroupReNameClick}
-            />
-          ))}
+          {this.state.groupList &&
+            this.state.groupList.map((group) => (
+              <Group
+                key={group.name}
+                group={group}
+                handleGroupReNameClick={this.handleGroupReNameClick}
+              />
+            ))}
         </main>
       </div>
     );
