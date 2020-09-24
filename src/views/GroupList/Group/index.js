@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { Tag, Input, Tooltip } from 'antd';
+import { Tag, Input } from 'antd';
 import './index.scss';
 
 class Group extends Component {
-  state = {
-    inputVisable: false,
-    inputValue: '',
-    input: null
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputVisable: false,
+      inputValue: '',
+    };
   }
 
-
-  saveInputRef = input => {
+  saveInputRef = (input) => {
     this.input = input;
   };
 
@@ -19,7 +20,7 @@ class Group extends Component {
     this.setState({ inputVisable: true }, () => this.input.focus());
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ inputValue: e.target.value });
   };
 
@@ -32,14 +33,15 @@ class Group extends Component {
       inputValue: '',
     });
   };
+
   render() {
     const { inputVisable, inputValue } = this.state;
     const { name, students } = this.props.group;
     return (
-      <div className='group'>
+      <div className="group">
         <header className="title_wrap">
-          {
-            inputVisable && <Input
+          {inputVisable ? (
+            <Input
               ref={this.saveInputRef}
               type="text"
               size="small"
@@ -49,24 +51,28 @@ class Group extends Component {
               onBlur={this.handleInputConfirm}
               onPressEnter={this.handleInputConfirm}
             />
-          }
-          {
-            !inputVisable && <h3 onClick={this.showInput}>{name}</h3>
-          }
+          ) : (
+            <div
+              role="textbox"
+              tabIndex="0"
+              onMouseDown={this.showInput}
+              onKeyDown={this.showInput}
+              onClick={this.showInput}
+            >
+              <h3>{name}</h3>
+            </div>
+          )}
         </header>
         <main>
-          {
-            students.map(student => <Tag
-                    className='student_tag'
-                    key={student.name+name}
-                  >
-                    {`${student.id} ${student.name}`}
-                  </Tag>)
-          }
+          {students.map((student) => (
+            <Tag className="student_tag" key={student.name + name}>
+              {`${student.id} ${student.name}`}
+            </Tag>
+          ))}
         </main>
       </div>
-    )
+    );
   }
 }
 
-export default Group
+export default Group;

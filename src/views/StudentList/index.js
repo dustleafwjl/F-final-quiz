@@ -1,26 +1,29 @@
-import React, { Component } from 'react'
-import { Tag, Input, Tooltip } from 'antd';
+import React, { Component } from 'react';
+import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import './index.module.scss'
-import { getAllStudent, createStudentAndGet } from "../../utils/Api.js"
+import './index.module.scss';
+import { getAllStudent, createStudentAndGet } from '../../utils/Api';
 
 class StudentList extends Component {
-  state = {
-    students: [],
-    inputVisible: false,
-    inputValue: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: [],
+      inputVisible: false,
+      inputValue: '',
+    };
   }
 
   componentDidMount() {
-    getAllStudent().then(res => {
+    getAllStudent().then((res) => {
       this.setState({
-        students: res.data
-      })
-    })
+        students: res.data,
+      });
+    });
   }
 
-  saveInputRef = input => {
+  saveInputRef = (input) => {
     this.input = input;
   };
 
@@ -28,22 +31,22 @@ class StudentList extends Component {
     this.setState({ inputVisible: true }, () => this.input.focus());
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ inputValue: e.target.value });
   };
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
-    if(inputValue) {
+    if (inputValue) {
       createStudentAndGet({
         name: inputValue,
-        id: "",
-        group: ""
-      }).then(res => {
+        id: '',
+        group: '',
+      }).then((res) => {
         this.setState({
-          students: res.data
-        })
-      })
+          students: res.data,
+        });
+      });
     }
     this.setState({
       inputVisible: false,
@@ -51,25 +54,18 @@ class StudentList extends Component {
     });
   };
 
-  
-
   render() {
-    const { inputVisible, editInputValue, inputValue } = this.state;
+    const { inputVisible, inputValue } = this.state;
     return (
-      <div className='student_list'>
+      <div className="student_list">
         <h1>学生列表</h1>
-        {
-          this.state.students.map((tag, index) => {
-            return (
-              <Tag
-                className='student_tag'
-                key={tag.name}
-              >
-                {`${tag.id} ${tag.name}`}
-              </Tag>
-            )
-          })
-        }
+        {this.state.students.map((tag) => {
+          return (
+            <Tag className="student_tag" key={tag.name}>
+              {`${tag.id} ${tag.name}`}
+            </Tag>
+          );
+        })}
         {inputVisible && (
           <Input
             ref={this.saveInputRef}
@@ -88,7 +84,7 @@ class StudentList extends Component {
           </Tag>
         )}
       </div>
-    )
+    );
   }
 }
 
