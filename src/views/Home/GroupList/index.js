@@ -20,6 +20,14 @@ class GroupList extends Component {
     });
   }
 
+  reFresh = () => {
+    getAllGroups().then((res) => {
+      this.setState({
+        groupList: res.data,
+      });
+    });
+  };
+
   handledividedClick = () => {
     createdGroups().then((res) => {
       this.setState({
@@ -51,6 +59,7 @@ class GroupList extends Component {
               <Group
                 key={group.name}
                 group={group}
+                reFresh={this.reFresh}
                 handleGroupReNameClick={this.handleGroupReNameClick}
               />
             ))}
