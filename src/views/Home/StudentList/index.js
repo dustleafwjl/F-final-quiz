@@ -3,7 +3,7 @@ import { Tag } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
-import { getAllStudentWithNotGrouped } from '../../../utils/Api';
+import { getAllStudentWithNotGrouped } from '../../../utils/Api/trainee';
 import InfoPopover from '../../../components/InfoPopover';
 
 class StudentList extends Component {

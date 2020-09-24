@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form, Input, Button, Space, message } from 'antd';
 
-import { createStudentAndGet } from '../../utils/Api';
+import { createStudentAndGet } from '../../utils/Api/trainee';
 
 const layout = {
   labelCol: { span: 4 },

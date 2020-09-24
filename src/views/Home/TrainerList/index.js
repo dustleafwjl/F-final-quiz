@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tag, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
-import { createTrainerAndGet, getAllTrainerWithNotGrouped } from '../../../utils/Api';
+import { createTrainerAndGet, getAllTrainerWithNotGrouped } from '../../../utils/Api/trainer';
 import InfoPopover from '../../../components/InfoPopover';
 
 class TrainerList extends Component {

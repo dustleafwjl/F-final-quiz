@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import Group from './Group';
-import { divideStudent, getAllGroups, reNameGroup } from '../../../utils/Api';
+import { divideStudent, getAllGroups, reNameGroup } from '../../../utils/Api/group';
 import './index.module.scss';
 
 class GroupList extends Component {
