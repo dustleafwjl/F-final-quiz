@@ -7,3 +7,7 @@ export const getAllStudentWithNotGrouped = () => {
 export const createStudentAndGet = (student) => {
   return http.post('/trainees', student);
 };
+
+export const deleteTraineeById = (id) => {
+  return http.delete(`/trainees/${id}`);
+};
