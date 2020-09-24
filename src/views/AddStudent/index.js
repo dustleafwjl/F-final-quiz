@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-template-curly-in-string */
 import React, { Component } from 'react';
-import { Form, Input, Button, Space } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { Form, Input, Button, Space, message } from 'antd';
+
+import { createStudentAndGet } from '../../utils/Api';
 
 const layout = {
   labelCol: { span: 4 },
@@ -12,10 +15,10 @@ const tailLayout = {
 };
 
 const validateMessages = {
-  required: '${label} is required!',
+  required: '${label} 为必填项!',
   types: {
-    email: '${label} is not validate email!',
-    number: '${label} is not a validate number!',
+    email: '${label} 格式不符合',
+    number: '${label} 格式不符合',
   },
   number: {
     range: '${label} must be between ${min} and ${max}',
@@ -24,16 +27,18 @@ const validateMessages = {
 class AddStudent extends Component {
   onFinish = (values) => {
     // eslint-disable-next-line no-console
-    console.log('Success:', values);
+    createStudentAndGet(values).then(() => {
+      message.success('添加学员成功！');
+      this.props.history.push('/');
+    });
   };
 
   onFinishFailed = (errorInfo) => {
-    // eslint-disable-next-line no-console
-    console.log('Fail:', errorInfo);
+    message.success('添加学员成功！', errorInfo.message);
   };
 
   onCancelClick = () => {
-    console.log('cancel');
+    this.props.history.push('/');
   };
 
   render() {
@@ -58,7 +63,7 @@ class AddStudent extends Component {
           <Form.Item label="办公室" name="office" rules={[{ required: true, message: '' }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="Zoom ID" name="zoom" rules={[{ required: true, message: '' }]}>
+          <Form.Item label="Zoom ID" name="zoomId" rules={[{ required: true, message: '' }]}>
             <Input />
           </Form.Item>
           <Form.Item
@@ -86,4 +91,4 @@ class AddStudent extends Component {
   }
 }
 
-export default AddStudent;
+export default withRouter(AddStudent);

@@ -6,11 +6,11 @@ const http = axios.create({
 // axios.baseURL = "http://localhost:8080"
 
 export const getAllStudent = () => {
-  return http.get('/students');
+  return http.get('/trainees');
 };
 
 export const createStudentAndGet = (student) => {
-  return http.post('/students', student);
+  return http.post('/trainees', student);
 };
 
 export const divideStudent = () => {
