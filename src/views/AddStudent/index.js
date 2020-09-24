@@ -56,7 +56,6 @@ class AddStudent extends Component {
           <Form.Item label="姓名" name="name" rules={[{ required: true, message: '' }]}>
             <Input />
           </Form.Item>
-
           <Form.Item label="邮箱" name="eamiil" rules={[{ type: 'email' }, { required: true }]}>
             <Input />
           </Form.Item>
@@ -73,7 +72,6 @@ class AddStudent extends Component {
           >
             <Input />
           </Form.Item>
-
           <Form.Item {...tailLayout}>
             <Space>
               <Button type="primary" htmlType="submit">
@@ -85,7 +83,6 @@ class AddStudent extends Component {
             </Space>
           </Form.Item>
         </Form>
-        ;
       </div>
     );
   }

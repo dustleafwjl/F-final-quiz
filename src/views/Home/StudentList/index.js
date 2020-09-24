@@ -1,90 +1,44 @@
 import React, { Component } from 'react';
-import { Tag, Input } from 'antd';
+import { Tag } from 'antd';
+import { withRouter } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
-import { getAllStudent, createStudentAndGet } from '../../../utils/Api';
+import { getAllStudentWithNotGrouped } from '../../../utils/Api';
+import InfoPopover from '../../../components/InfoPopover';
 
 class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       students: [],
-      inputVisible: false,
-      inputValue: '',
     };
   }
 
   componentDidMount() {
-    getAllStudent().then((res) => {
+    getAllStudentWithNotGrouped().then((res) => {
       this.setState({
         students: res.data,
       });
     });
   }
 
-  saveInputRef = (input) => {
-    this.input = input;
-  };
-
-  showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
-  };
-
-  handleInputChange = (e) => {
-    this.setState({ inputValue: e.target.value });
-  };
-
-  handleInputConfirm = () => {
-    const { inputValue } = this.state;
-    if (inputValue) {
-      createStudentAndGet({
-        name: inputValue,
-        id: '',
-        group: '',
-      }).then((res) => {
-        this.setState({
-          students: res.data,
-        });
-      });
-    }
-    this.setState({
-      inputVisible: false,
-      inputValue: '',
-    });
+  goToAddTrainee = () => {
+    this.props.history.push('/addstudent');
   };
 
   render() {
-    const { inputVisible, inputValue } = this.state;
     return (
       <div className="student_list">
         <h1>学生列表</h1>
-        {this.state.students.map((tag) => {
-          return (
-            <Tag className="student_tag" key={tag.name}>
-              {`${tag.id} ${tag.name}`}
-            </Tag>
-          );
+        {this.state.students.map((tag, index) => {
+          return <InfoPopover key={tag.name} info={{ ...tag, index }} />;
         })}
-        {inputVisible && (
-          <Input
-            ref={this.saveInputRef}
-            type="text"
-            size="small"
-            className="tag-input"
-            value={inputValue}
-            onChange={this.handleInputChange}
-            onBlur={this.handleInputConfirm}
-            onPressEnter={this.handleInputConfirm}
-          />
-        )}
-        {!inputVisible && (
-          <Tag className="site-tag-plus student_tag" onClick={this.showInput}>
-            <PlusOutlined /> 添加学员
-          </Tag>
-        )}
+        <Tag className="site-tag-plus student_tag" onClick={this.goToAddTrainee}>
+          <PlusOutlined /> 添加学员
+        </Tag>
       </div>
     );
   }
 }
 
-export default StudentList;
+export default withRouter(StudentList);

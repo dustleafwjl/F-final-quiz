@@ -5,8 +5,8 @@ const http = axios.create({
 });
 // axios.baseURL = "http://localhost:8080"
 
-export const getAllStudent = () => {
-  return http.get('/trainees');
+export const getAllStudentWithNotGrouped = () => {
+  return http.get('/trainees?grouped=false');
 };
 
 export const createStudentAndGet = (student) => {
