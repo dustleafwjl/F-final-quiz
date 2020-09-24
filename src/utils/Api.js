@@ -13,6 +13,10 @@ export const createStudentAndGet = (student) => {
   return http.post('/trainees', student);
 };
 
+export const createTrainerAndGet = (trainer) => {
+  return http.post('/trainers', trainer);
+};
+
 export const divideStudent = () => {
   return http.patch('/students/divided');
 };
