@@ -35,6 +35,8 @@ class GroupList extends Component {
           groupList: res.data,
         });
         message.success('分组学员成功！');
+        // eslint-disable-next-line no-restricted-globals
+        history.go(0);
       })
       .catch((error) => {
         message.error('分组学员失败！', error);
