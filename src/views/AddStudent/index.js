@@ -27,14 +27,18 @@ const validateMessages = {
 class AddStudent extends Component {
   onFinish = (values) => {
     // eslint-disable-next-line no-console
-    createStudentAndGet(values).then(() => {
-      message.success('添加学员成功！');
-      this.props.history.push('/');
-    });
+    createStudentAndGet(values)
+      .then(() => {
+        message.success('添加学员成功！');
+        this.props.history.push('/');
+      })
+      .catch((error) => {
+        message.error('添加学员失败！', error.message);
+      });
   };
 
   onFinishFailed = (errorInfo) => {
-    message.success('添加学员成功！', errorInfo.message);
+    message.warn('格式不正确', errorInfo);
   };
 
   onCancelClick = () => {

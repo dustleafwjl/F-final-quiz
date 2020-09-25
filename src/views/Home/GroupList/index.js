@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import Group from './Group';
 import { createdGroups, getAllGroups, changeNameGroup } from '../../../utils/Api/group';
 import './index.module.scss';
@@ -29,19 +29,28 @@ class GroupList extends Component {
   };
 
   handledividedClick = () => {
-    createdGroups().then((res) => {
-      this.setState({
-        groupList: res.data,
+    createdGroups()
+      .then((res) => {
+        this.setState({
+          groupList: res.data,
+        });
+        message.success('分组学员成功！');
+      })
+      .catch((error) => {
+        message.error('分组学员失败！', error);
       });
-    });
   };
 
   handleGroupReNameClick = (id, rename) => {
-    changeNameGroup(id, rename).then((res) => {
-      this.setState({
-        groupList: res.data,
+    changeNameGroup(id, rename)
+      .then((res) => {
+        this.setState({
+          groupList: res.data,
+        });
+      })
+      .catch(() => {
+        message.error('更改名称失败！');
       });
-    });
   };
 
   render() {
