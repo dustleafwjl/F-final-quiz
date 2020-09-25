@@ -65,9 +65,7 @@ class InfoPopover extends Component {
     return (
       <>
         <Popover content={this.infoPanel()}>
-          <Tag onClick={this.showModal} className="student_tag">{`${info.index + 1} ${
-            info.name
-          }`}</Tag>
+          <Tag onClick={this.showModal} className="student_tag">{`${info.id} ${info.name}`}</Tag>
         </Popover>
         <Modal
           title={this.props.type || '确定删除吗？'}
