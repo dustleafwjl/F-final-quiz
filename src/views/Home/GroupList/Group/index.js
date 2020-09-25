@@ -68,7 +68,7 @@ class Group extends Component {
                 key={`trainer:${trainer.name}`}
                 info={{ ...trainer, index }}
                 handleDelete={deleteTrainerById}
-                reFresh={this.reFresh}
+                reFresh={this.props.reFresh}
               />
             ))}
           </div>

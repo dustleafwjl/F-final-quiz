@@ -33,7 +33,7 @@ class InfoPopover extends Component {
         }
       })
       .catch((err) => {
-        message.warn('删除失败！', err);
+        message.error('删除失败！', err);
         this.setState({
           confirmLoading: false,
           modalVisible: false,
