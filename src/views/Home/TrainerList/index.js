@@ -29,6 +29,7 @@ class TrainerList extends Component {
     });
   }
 
+  // TODO feedback：跟componentDidMount中行逻辑重复
   reFresh = () => {
     getAllTrainerWithNotGrouped().then((res) => {
       this.setState({

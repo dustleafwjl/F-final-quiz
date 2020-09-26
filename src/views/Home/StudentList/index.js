@@ -24,6 +24,7 @@ class StudentList extends Component {
     });
   }
 
+  // TODO feedback：跟componentDidMount中行逻辑重复
   reFresh = () => {
     getAllStudentWithNotGrouped().then((res) => {
       this.setState({

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tag, Popover, Modal, message } from 'antd';
 
+// TODO feedback：组件命名尽量符合业务功能，可以命名为Personnel之类的，popover和modal只是附属功能
 class InfoPopover extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +30,7 @@ class InfoPopover extends Component {
             confirmLoading: false,
             modalVisible: false,
           });
+          // TODO feedback：refresh是一个词，F不需要大写
           this.props.reFresh();
         }
       })
@@ -51,6 +53,7 @@ class InfoPopover extends Component {
     const { info } = this.props;
     return (
       <div>
+        {/* TODO feedback：使用Object.keys, info[key]实现，可读性会更高些 */}
         {Object.entries(info)
           .filter((ele) => ele[0] !== 'index')
           .map((item, index) => {

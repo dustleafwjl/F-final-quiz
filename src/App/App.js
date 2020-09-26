@@ -13,6 +13,7 @@ class App extends Component {
       <div data-testid="app" className="App">
         <Router>
           <Switch>
+            {/* TODO feedback: React Route 使用准确，Route内包裹的一般是子路径，有个component props来传对应的component */}
             <Route exact path="/">
               <Home />
             </Route>
