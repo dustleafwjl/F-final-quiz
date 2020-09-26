@@ -77,7 +77,7 @@ class InfoPopover extends Component {
           confirmLoading={this.state.confirmLoading}
           onCancel={this.handleCancel}
         >
-          <p>删除学员后不可复原</p>
+          <p>删除{this.props.type}后不可复原</p>
         </Modal>
       </>
     );

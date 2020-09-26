@@ -66,7 +66,7 @@ class Group extends Component {
             {trainers.map((trainer, index) => (
               <InfoPopover
                 key={`trainer:${trainer.name}`}
-                info={{ ...trainer, index }}
+                info={{ ...trainer, index, team: name }}
                 handleDelete={deleteTrainerById}
                 reFresh={this.props.reFresh}
               />
@@ -77,7 +77,7 @@ class Group extends Component {
           {trainees.map((trainee, index) => (
             <InfoPopover
               key={`trainee:${trainee.name}`}
-              info={{ ...trainee, index }}
+              info={{ ...trainee, index, team: name }}
               handleDelete={deleteTraineeById}
               reFresh={this.props.reFresh}
             />
