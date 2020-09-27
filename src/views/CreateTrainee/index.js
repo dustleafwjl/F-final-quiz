@@ -24,7 +24,7 @@ const validateMessages = {
     range: '${label} must be between ${min} and ${max}',
   },
 };
-class AddStudent extends Component {
+class CreateTrainee extends Component {
   onFinish = (values) => {
     // eslint-disable-next-line no-console
     createStudentAndGet(values)
@@ -92,4 +92,4 @@ class AddStudent extends Component {
   }
 }
 
-export default withRouter(AddStudent);
+export default withRouter(CreateTrainee);

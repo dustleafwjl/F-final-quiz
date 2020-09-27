@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
 import Home from '../views/Home';
-import AddStudent from '../views/AddStudent';
+import CreateTrainee from '../views/CreateTrainee';
 
 import 'antd/dist/antd.css';
 
@@ -17,8 +17,8 @@ class App extends Component {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/addstudent">
-              <AddStudent />
+            <Route exact path="/createTrainee">
+              <CreateTrainee />
             </Route>
           </Switch>
         </Router>

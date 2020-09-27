@@ -7,7 +7,7 @@ import './index.scss';
 import { deleteTraineeById } from '../../../../utils/Api/trainee';
 import { deleteTrainerById } from '../../../../utils/Api/trainer';
 
-import InfoPopover from '../../../../components/InfoPopover';
+import Personnel from '../../../../components/Personnel';
 
 class Group extends Component {
   constructor(props) {
@@ -64,22 +64,22 @@ class Group extends Component {
           )}
           <div className="trainee-wrap">
             {trainers.map((trainer, index) => (
-              <InfoPopover
+              <Personnel
                 key={`trainer:${trainer.name}`}
                 info={{ ...trainer, index, team: name }}
                 handleDelete={deleteTrainerById}
-                reFresh={this.props.reFresh}
+                refresh={this.props.refresh}
               />
             ))}
           </div>
         </header>
         <main>
           {trainees.map((trainee, index) => (
-            <InfoPopover
+            <Personnel
               key={`trainee:${trainee.name}`}
               info={{ ...trainee, index, team: name }}
               handleDelete={deleteTraineeById}
-              reFresh={this.props.reFresh}
+              refresh={this.props.refresh}
             />
           ))}
         </main>

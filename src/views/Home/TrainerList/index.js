@@ -9,7 +9,7 @@ import {
   getAllTrainerWithNotGrouped,
   deleteTrainerById,
 } from '../../../utils/Api/trainer';
-import InfoPopover from '../../../components/InfoPopover';
+import Personnel from '../../../components/Personnel';
 
 class TrainerList extends Component {
   constructor(props) {
@@ -22,15 +22,11 @@ class TrainerList extends Component {
   }
 
   componentDidMount() {
-    getAllTrainerWithNotGrouped().then((res) => {
-      this.setState({
-        trainers: res.data,
-      });
-    });
+    this.refresh();
   }
 
   // TODO feedback：跟componentDidMount中行逻辑重复
-  reFresh = () => {
+  refresh = () => {
     getAllTrainerWithNotGrouped().then((res) => {
       this.setState({
         trainers: res.data,
@@ -76,11 +72,11 @@ class TrainerList extends Component {
         <h1>讲师列表</h1>
         {this.state.trainers.map((tag, index) => {
           return (
-            <InfoPopover
+            <Personnel
               key={`trainer:${tag.name}`}
               info={{ ...tag, index }}
               handleDelete={deleteTrainerById}
-              reFresh={this.reFresh}
+              refresh={this.refresh}
             />
           );
         })}

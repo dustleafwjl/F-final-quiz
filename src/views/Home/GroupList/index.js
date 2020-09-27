@@ -20,7 +20,7 @@ class GroupList extends Component {
     });
   }
 
-  reFresh = () => {
+  refresh = () => {
     getAllGroups().then((res) => {
       this.setState({
         groupList: res.data,
@@ -70,7 +70,7 @@ class GroupList extends Component {
               <Group
                 key={group.name}
                 group={group}
-                reFresh={this.reFresh}
+                refresh={this.refresh}
                 handleGroupReNameClick={this.handleGroupReNameClick}
               />
             ))}

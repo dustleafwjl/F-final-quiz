@@ -6,9 +6,9 @@ import { withRouter } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 import './index.scss';
 import { getAllStudentWithNotGrouped, deleteTraineeById } from '../../../utils/Api/trainee';
-import InfoPopover from '../../../components/InfoPopover';
+import Personnel from '../../../components/Personnel';
 
-class StudentList extends Component {
+class TraineeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,15 +17,11 @@ class StudentList extends Component {
   }
 
   componentDidMount() {
-    getAllStudentWithNotGrouped().then((res) => {
-      this.setState({
-        students: res.data,
-      });
-    });
+    this.refresh();
   }
 
   // TODO feedback：跟componentDidMount中行逻辑重复
-  reFresh = () => {
+  refresh = () => {
     getAllStudentWithNotGrouped().then((res) => {
       this.setState({
         students: res.data,
@@ -34,7 +30,7 @@ class StudentList extends Component {
   };
 
   goToAddTrainee = () => {
-    this.props.history.push('/addstudent');
+    this.props.history.push('/createTrainee');
   };
 
   render() {
@@ -43,11 +39,11 @@ class StudentList extends Component {
         <h1>学生列表</h1>
         {this.state.students.map((tag, index) => {
           return (
-            <InfoPopover
+            <Personnel
               key={`trainee:${tag.name}`}
               info={{ ...tag, index }}
               handleDelete={deleteTraineeById}
-              reFresh={this.reFresh}
+              refresh={this.refresh}
             />
           );
         })}
@@ -59,4 +55,4 @@ class StudentList extends Component {
   }
 }
 
-export default withRouter(StudentList);
+export default withRouter(TraineeList);

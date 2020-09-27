@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tag, Popover, Modal, message } from 'antd';
 
 // TODO feedback：组件命名尽量符合业务功能，可以命名为Personnel之类的，popover和modal只是附属功能
-class InfoPopover extends Component {
+class Personnel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ class InfoPopover extends Component {
             modalVisible: false,
           });
           // TODO feedback：refresh是一个词，F不需要大写
-          this.props.reFresh();
+          this.props.refresh();
         }
       })
       .catch((err) => {
@@ -84,4 +84,4 @@ class InfoPopover extends Component {
   }
 }
 
-export default InfoPopover;
+export default Personnel;
