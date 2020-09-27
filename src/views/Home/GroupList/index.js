@@ -45,10 +45,9 @@ class GroupList extends Component {
 
   handleGroupReNameClick = (id, rename) => {
     changeNameGroup(id, rename)
-      .then((res) => {
-        this.setState({
-          groupList: res.data,
-        });
+      .then(() => {
+        // eslint-disable-next-line no-restricted-globals
+        // history.go(0);
       })
       .catch(() => {
         message.error('更改名称失败！');

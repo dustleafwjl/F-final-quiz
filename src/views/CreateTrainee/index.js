@@ -60,7 +60,7 @@ class CreateTrainee extends Component {
           <Form.Item label="姓名" name="name" rules={[{ required: true, message: '' }]}>
             <Input />
           </Form.Item>
-          <Form.Item label="邮箱" name="eamiil" rules={[{ type: 'email' }, { required: true }]}>
+          <Form.Item label="邮箱" name="email" rules={[{ type: 'email' }, { required: true }]}>
             <Input />
           </Form.Item>
           <Form.Item label="办公室" name="office" rules={[{ required: true, message: '' }]}>
