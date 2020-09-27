@@ -18,12 +18,8 @@ class Group extends Component {
     };
   }
 
-  saveInputRef = (input) => {
-    this.input = input;
-  };
-
   showInput = () => {
-    this.setState({ inputVisable: true }, () => this.input.focus());
+    this.setState({ inputVisable: true });
   };
 
   handleInputChange = (e) => {
@@ -48,7 +44,7 @@ class Group extends Component {
         <header className="title_wrap">
           {inputVisable ? (
             <Input
-              ref={this.saveInputRef}
+              autoFocus
               type="text"
               size="small"
               className="tag-input"

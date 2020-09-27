@@ -34,12 +34,8 @@ class TrainerList extends Component {
     });
   };
 
-  saveInputRef = (input) => {
-    this.input = input;
-  };
-
   showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
+    this.setState({ inputVisible: true });
   };
 
   handleInputChange = (e) => {
@@ -82,7 +78,7 @@ class TrainerList extends Component {
         })}
         {inputVisible ? (
           <Input
-            ref={this.saveInputRef}
+            autoFocus
             type="text"
             size="small"
             className="tag-input"
